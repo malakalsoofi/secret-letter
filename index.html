@@ -1,306 +1,60 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SIX SEVEN 💙💚</title>
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #07172e, #142d20, #050914);
-  font-family: Tahoma, Arial, sans-serif;
-  color: white;
-  overflow: hidden;
-  position: relative;
-}
-
-body::before {
-  content: "6 7";
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-12deg);
-  font-family: Arial, sans-serif;
-  font-size: clamp(240px, 48vw, 520px);
-  font-weight: 1000;
-  letter-spacing: -25px;
-  white-space: nowrap;
-  direction: ltr;
-  background: linear-gradient(90deg, #2196ff 45%, #39e75f 55%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  opacity: 0.2;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.scene {
-  text-align: center;
-  width: 100%;
-  padding: 15px;
-  position: relative;
-  z-index: 1;
-}
-
-h1 {
-  font-size: 30px;
-  font-weight: 900;
-  letter-spacing: 2px;
-}
-
-.envelope {
-  position: relative;
-  isolation: isolate;
-  width: 280px;
-  height: 175px;
-  margin: 100px auto 30px;
-  background: #d9e6ff;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0 15px 50px #0009, 0 0 25px #2196ff33;
-}
-
-.envelope::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #eaf0ff;
-  clip-path: polygon(0 0, 50% 60%, 100% 0);
-  transform-origin: top;
-  transition: transform 0.8s;
-  z-index: 4;
-}
-
-.flap {
-  position: absolute;
-  inset: 0;
-  background: #6c91d8;
-  clip-path: polygon(0 0, 50% 60%, 100% 0);
-  transform-origin: top;
-  transition: transform 0.8s;
-  z-index: 5;
-}
-
-.letter {
-  position: absolute;
-  width: 85%;
-  height: 150px;
-  left: 7.5%;
-  top: 10px;
-  padding: 12px 8px;
-  color: #142d20;
-  background: #ffffff;
-  border-radius: 5px;
-  transition: transform 1s;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.letter p {
-  font-size: 18px;
-  font-weight: bold;
-  line-height: 1.6;
-  margin: 4px 0;
-  overflow-wrap: anywhere;
-}
-
-.number67 {
-  font-family: Arial, sans-serif;
-  font-size: 68px;
-  font-weight: 1000;
-  direction: ltr;
-  line-height: 1.1;
-  margin-top: 5px;
-  text-shadow: 2px 3px 0 #0001;
-}
-
-.six {
-  color: #2196ff;
-}
-
-.seven {
-  color: #39e75f;
-}
-
-/* يغطي الرسالة والرقم والظرف مسكّر */
-.envelope::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #d9e6ff;
-  clip-path: polygon(0 100%, 0 0, 50% 55%, 100% 0, 100% 100%);
-  z-index: 3;
-  pointer-events: none;
-  transition: opacity 0.3s;
-}
-
-.heart {
-  position: absolute;
-  top: 65px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 38px;
-  font-weight: bold;
-  font-family: Georgia, serif;
-  color: #ffffff;
-  text-shadow: 0 0 12px #2196ff;
-  z-index: 6;
-  transition: opacity 0.3s;
-  animation: letterPulse 1.5s ease-in-out infinite;
-}
-
-@keyframes letterPulse {
-  0%, 100% {
-    transform: translateX(-50%) scale(1);
-  }
-  50% {
-    transform: translateX(-50%) scale(1.2);
-  }
-}
-
-button {
-  border: 1px solid #39e75f;
-  color: white;
-  background: #142d20cc;
-  border-radius: 30px;
-  padding: 12px 25px;
-  font-size: 16px;
-  cursor: pointer;
-  font-family: Tahoma, Arial, sans-serif;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #2196ff;
-  border-color: #2196ff;
-  transform: scale(1.05);
-}
-
-.hint {
-  color: #c5e5ff;
-  font-size: 14px;
-}
-
-.open .flap {
-  transform: rotateX(180deg);
-  z-index: 1;
-}
-
-.open .letter {
-  transform: translateY(-155px);
-  z-index: 7;
-  overflow: visible;
-}
-
-.open .envelope::after {
-  opacity: 0;
-}
-
-.open .heart {
-  opacity: 0;
-}
-
-.sparkle {
-  position: fixed;
-  animation: float 4s linear infinite;
-  opacity: .8;
-  pointer-events: none;
-  z-index: 0;
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-}
-
-@keyframes float {
-  from {
-    transform: translateY(100vh) rotate(0);
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.8;
-  }
-  to {
-    transform: translateY(-10vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-@media (max-width: 400px) {
-  h1 {
-    font-size: 25px;
-  }
-
-  .envelope {
-    width: 260px;
-  }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Word</title>
+    <link rel="stylesheet" href="guess.css">
 </head>
-
 <body>
 
-<div class="scene">
+    <!-- Game Title -->
+    <h1>Guess The Word</h1>
 
-  <h1>SIX SEVEN 💙💚</h1>
-
-  <p class="hint">سكس سفن لأحلى سوسو   </p>
-
-  <div class="envelope" id="envelope" onclick="openLetter()">
-
-    <div class="letter">
-      <p>سسسككووبباااااااااا </p>
-
-      <div class="number67">
-        <span class="six">6</span><span class="seven">7</span>
-      </div>
+    <!-- Language Selector -->
+    <div class="language-select">
+        <button id="lang-ar" class="active">عربي</button>
+        <button id="lang-en">English</button>
     </div>
 
-    <div class="flap"></div>
+    <!-- Main Game Container -->
+    <div class="guess-game">
+        
+        <!-- Game Area -->
+        <div class="game-area">
+            <div class="inputs"></div>
+            <div class="control">
+                <button class="check">Check Word</button>
+                <button class="hint"><span>2</span> Hints</button>
+            </div>
+            <div class="message"></div>
+        </div>
 
-    <div class="heart">A</div>
+        <!-- Key Colors Section -->
+        <div class="key-colors">
+            <h2>Key Colors</h2>
+            
+            <div class="key-color">
+                <div class="key in-place"></div>
+                <div class="key-test">Letter Is Correct and In Place</div>
+            </div>
+            
+            <div class="key-color">
+                <div class="key not-in-place"></div>
+                <div class="key-test">Letter Is Correct But Not In Place</div>
+            </div>
+            
+            <div class="key-color">
+                <div class="key no"></div>
+                <div class="key-test">Letter Is Wrong</div>
+            </div>
+        </div>
 
-  </div>
+    </div>
 
-  <button onclick="openLetter()">يلا بطل قبل لاتعصب الملكه</button>
+    <!-- Footer -->
+    <footer></footer>
 
-  <p class="hint">SIX SEVEN FOREVER 💀</p>
-
-</div>
-
-<script>
-function openLetter() {
-  document.getElementById("envelope").classList.toggle("open");
-}
-
-for (let i = 0; i < 18; i++) {
-  const s = document.createElement("div");
-  s.className = "sparkle";
-
-  const symbols = ["6", "7", "✦", "A"];
-  s.textContent = symbols[i % symbols.length];
-
-  s.style.color = i % 2 === 0 ? "#2196ff" : "#39e75f";
-  s.style.left = Math.random() * 100 + "vw";
-  s.style.animationDelay = Math.random() * 4 + "s";
-  s.style.fontSize = (12 + Math.random() * 25) + "px";
-
-  document.body.appendChild(s);
-}
-</script>
-
+    <script src="guess.js"></script>
 </body>
 </html>
